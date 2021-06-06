@@ -1,4 +1,4 @@
-# esx_socieyt/server/main.lua line 68
+# esx_socieyt/server/main.lua line 68 and line 99
 * Withdraw
 ```LUA
 TriggerEvent('esx_addonaccount:getSharedAccount', society.account, function(account)
