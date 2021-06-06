@@ -104,5 +104,5 @@ AddEventHandler('Boost-Logs:SendLog', function(data)
     local embed = GenerateEmbed(_source,data)
 
     Citizen.Wait(125)
-    PerformHttpRequest(webHook, function(err, text, headers)end, 'POST', json.encode({username = name, embeds = embed}), { ['Content-Type'] = 'application/json' })
+    PerformHttpRequest(webHook, function(err, text, headers)end, 'POST', json.encode({username = 'Boost-Logs', embeds = embed}), { ['Content-Type'] = 'application/json' })
 end)
