@@ -1,6 +1,6 @@
 Config = {}
     Config.Logs = {
-        ['default'] = '',
+        ['default'] = '', -- Webhok link
         ['inventory'] = '',
     }
 
