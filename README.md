@@ -14,3 +14,5 @@ local data = {
 TriggerEvent('Boost-Logs:SendLog', data)
 ```
 
+# For more help join my discord server
+https://discord.com/invite/y4d842rhg5
