@@ -42,6 +42,10 @@ function GenerateEmbed(source,data)
     if data['Target'] ~= nil then
         local srcIds = ExtractIdentifiers(_source)
         local trgIds = ExtractIdentifiers(data['Target'])
+        local srcSteamSub = srcIds.steam:gsub("steam:", "")
+        local trgSteamSub = trgIds.steam:gsub("steam:", "")
+        local srcSteam = tostring(tonumber(srcSteamSub,16))
+        local trgSteam = tostring(tonumber(trgSteamSub,16))
 
         embed = {
             {
@@ -51,12 +55,12 @@ function GenerateEmbed(source,data)
                 .. '**Source Player**\n**Player name:** ``' .. GetPlayerName(_source) .. '``\n'
                 .. '**Player ip:** ||' .. srcIds.ip .. '||\n'
                 .. '**Player identifier:** ``' .. srcIds.license .. '``\n'
-                .. '**Player steam:** https://steamcommunity.com/profiles/' .. srcIds.steam:gsub('steam:','')  .. '\n'
+                .. '**Player steam:** https://steamcommunity.com/profiles/' .. srcSteam .. '\n'
                 .. '**Player discord:** <@' .. srcIds.discord:gsub('discord:','') .. '> ``' .. srcIds.discord:gsub('discord:','')..'``\n\n'
                 .. '**Target Player**\n**Target name:** ``' .. GetPlayerName(data['Target']) .. '``\n'
                 .. '**Target ip:** ||' .. trgIds.ip .. '||\n'
                 .. '**Target identifier:** ``' .. trgIds.license .. '``\n'
-                .. '**Target steam:** https://steamcommunity.com/profiles/' .. trgIds.steam:gsub('steam:','')  .. '\n'
+                .. '**Target steam:** https://steamcommunity.com/profiles/' .. trgSteam  .. '\n'
                 .. '**Target discord:** <@' .. trgIds.discord:gsub('discord:','') .. '> ``' .. trgIds.discord:gsub('discord:','')..'``',
                 ["footer"] = {
                     ["text"] = os.date("%A, %m %B %Y, %X"),
