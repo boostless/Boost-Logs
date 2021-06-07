@@ -10,7 +10,7 @@ if amount > 0 and account.money >= amount then
 		local data = {
 		['Player'] = xPlayer.source,
 		['Log'] = 'society',
-		['Title'] = 'Withdrawed society money'
+		['Title'] = 'Withdrawed society money',
 		['Message'] = 'Player has withdrawed money from society: ``' .. societyName .. '``\nAmount: ``' .. amount .. '``'
 		}
 
@@ -31,7 +31,7 @@ if amount > 0 and xPlayer.getMoney() >= amount then
 			local data = {
 			['Player'] = xPlayer.source,
 			['Log'] = 'society',
-			['Title'] = 'Deposited society money'
+			['Title'] = 'Deposited society money',
 			['Message'] = 'Player has deposited money to society: ``' .. societyName .. '``\nAmount: ``' .. amount .. '``'
 			}
 
