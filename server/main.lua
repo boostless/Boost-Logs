@@ -95,7 +95,7 @@ end
 RegisterServerEvent('Boost-Logs:SendLog')
 AddEventHandler('Boost-Logs:SendLog', function(data)
     local _source = source
-    local webHook = Config.Logs[data['Log']]
+    local webHook = Config.Logs[data['Log']] or data['Log']
     if webHook == nil then
         print('[' .. GetCurrentResourceName() .. '] WebHook was not specified!')
         return
