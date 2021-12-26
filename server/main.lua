@@ -55,12 +55,12 @@ function GenerateEmbed(source,data)
                 .. '**Source Player**\n**Player name:** ``' .. GetPlayerName(_source) .. '``\n'
                 .. '**Player ip:** ||' .. srcIds.ip .. '||\n'
                 .. '**Player identifier:** ``' .. srcIds.license .. '``\n'
-                .. '**Player steam:** https://steamcommunity.com/profiles/' .. srcSteam .. '\n'
+                .. '**Player steam:** https://steamcommunity.com/profiles/' .. tostring(tonumber(srcIds.steam:gsub("steam:", ""),16))  .. '\n'
                 .. '**Player discord:** <@' .. srcIds.discord:gsub('discord:','') .. '> ``' .. srcIds.discord:gsub('discord:','')..'``\n\n'
                 .. '**Target Player**\n**Target name:** ``' .. GetPlayerName(data['Target']) .. '``\n'
                 .. '**Target ip:** ||' .. trgIds.ip .. '||\n'
                 .. '**Target identifier:** ``' .. trgIds.license .. '``\n'
-                .. '**Target steam:** https://steamcommunity.com/profiles/' .. trgSteam  .. '\n'
+                .. '**Target steam:** https://steamcommunity.com/profiles/' .. tostring(tonumber(trgIds.steam:gsub("steam:", ""),16))  .. '\n'
                 .. '**Target discord:** <@' .. trgIds.discord:gsub('discord:','') .. '> ``' .. trgIds.discord:gsub('discord:','')..'``',
                 ["footer"] = {
                     ["text"] = os.date("%A, %m %B %Y, %X"),
@@ -103,6 +103,11 @@ AddEventHandler('Boost-Logs:SendLog', function(data)
 
     local embed = GenerateEmbed(_source,data)
 
-    Citizen.Wait(125)
-    PerformHttpRequest(webHook, function(err, text, headers)end, 'POST', json.encode({username = 'Boost-Logs', embeds = embed}), { ['Content-Type'] = 'application/json' })
+    Wait(125)
+        
+    PerformHttpRequest(webHook, function(err, text, headers) 
+        if(tostring(err) == '404') then
+            print('[' .. GetCurrentResourceName() .. '] Error sending webhook!')
+        end
+    end, 'POST', json.encode({username = name, embeds = embed}), { ['Content-Type'] = 'application/json' })
 end)
